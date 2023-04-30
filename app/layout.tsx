@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import SideBar from 'components/SideBar'
 
 export const metadata = {
   title: 'Jon\'s ChatGPT Messenger',
@@ -15,8 +16,7 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex">
-
-          {/* SideBar */}
+          <SideBar />
 
           {/* Client Provider - Notifications */}
           <div className="bg-[#263238]">
