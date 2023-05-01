@@ -1,4 +1,8 @@
+'use client'
+
 import React from 'react'
+import { signOut } from 'next-auth/react'
+
 import NewChat from 'components/NewChat'
 
 function SideBar() {
@@ -11,10 +15,14 @@ function SideBar() {
 
           <div>{/* models */}</div>
 
+          <button onClick={() => signOut()} className="text-white">Sign Out</button>
+
+
           {/* Map through the Chats */}
         </div>
       </div>
     </div>
+
   )
 }
 
