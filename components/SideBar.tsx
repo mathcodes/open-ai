@@ -3,17 +3,16 @@ import NewChat from 'components/NewChat'
 
 function SideBar() {
   return (
-    <div className="p-2 flex flex-col h-screen">
+    <div className="flex flex-col h-screen p-2">
       <div className="flex-1">
+        <div>
+          {/* NEW CHAT */}
+          <NewChat />
 
-    {/* NEW CHAT */}
-    <NewChat />
+          <div>{/* models */}</div>
 
-    <div>
-      {/* models */}
-    </div>
-
-    {/* Map through the Chats */}
+          {/* Map through the Chats */}
+        </div>
       </div>
     </div>
   )

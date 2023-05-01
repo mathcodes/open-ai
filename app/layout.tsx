@@ -16,12 +16,14 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex">
-          <SideBar />
 
-          {/* Client Provider - Notifications */}
-          <div className="bg-[#263238]">
-            {children}
+                      {/* <SideBar /> */}
+          <div className="bg-[#202202] max-w-xs h-screen md:min-w-[20rem]"
+          >
+            <SideBar />
           </div>
+          {/* Client Provider - Notifications */}
+          <div className="bg-[#263238] flex-1">{children}</div>
 
         </div>
       </body>
