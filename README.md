@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Custom Built ChatGPT Messenger App
 
-## Getting Started
+<!-- create badges with logos for React, NextJS, Firebase, Tailwind, and Typescript using https://shields.io/-->
+[![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=flat)](https://reactjs.org/) [![NextJS](https://img.shields.io/badge/-NextJS-000000?logo=next.js&logoColor=white&style=flat)](https://nextjs.org/) [![Firebase](https://img.shields.io/badge/-Firebase-FFCA28?logo=firebase&logoColor=white&style=flat)](https://firebase.google.com/) [![Tailwind](https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat)](https://tailwindcss.com/) [![Typescript](https://img.shields.io/badge/-Typescript-3178C6?logo=typescript&logoColor=white&style=flat)](https://www.typescriptlang.org/)
 
-First, run the development server:
+## Overview
+This is a custom built messenger app that uses the [ChatGPT](https://chat.openai.com/) API to generate responses to messages. The app is built using React, NextJS, Firebase, Tailwind, and Typescript. The app is hosted on [Vercel](https://vercel.com/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Features
+- [x] Login with Google
+- [x] Send messages
+- [x] Receive messages
+- [x] Generate responses to messages
+- [x] Save messages to Firebase
+- [x] Save responses to Firebase
+- [x] Save messages and responses to Firebase
+- [x] Display messages and responses from Firebase, in real time
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Demo
+![Demo](https://g.com)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## License
+[MIT](./LICENSE)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Acknowledgements
+- [ChatGPT](https://chat.openai.com/)
+- [React](https://reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Vercel](https://vercel.com/)
+- [Shields.io](https://shields.io/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contact
+<img src="https://avatars0.githubusercontent.com/u/17928947?v=4" alt="Github profile image" width="80px" height="80px" />
 
-## Learn More
+__Jon Christie__
 
-To learn more about Next.js, take a look at the following resources:
+GitHub: [mathcodes](https://github.com/mathcodes)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[<code><img width="36px" src="https://img.icons8.com/color/48/000000/linkedin.png"/></code>](https://www.linkedin.com/jonchristie)       
+[<code><img width="36" src="https://img.icons8.com/color/48/000000/twitter--v2.png"/></code>](https://twitter.com/thejonchristie)       
+[<code><img width="36" src="https://img.icons8.com/color/48/000000/youtube-play.png"/></code>](https://www.youtube.com/channel/UC5GFnN-lv8Yuqc9O3b79k6g)       
+[<code><img width="36" src="https://img.icons8.com/color/48/000000/facebook.png"/></code>](https://www.facebook.com/jonpchristie)       
+[<code><img width="36" src="https://img.icons8.com/color/48/000000/instagram-new--v2.png"/></code>](https://www.instagram.com/fullstack11235)       
+[<code><img width="36" src="https://img.icons8.com/color/48/000000/soundcloud.png"/></code>](https://soundcloud.com/jonchristie#/)       
+[<code><img width="36" src="https://img.icons8.com/color/48/000000/spotify--v1.png"/></code>](https://open.spotify.com/artist/07S7aLfxH70VAX64g1WuFw?si=tlOj1OMBRLm-y4sY8Lox3Q)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
