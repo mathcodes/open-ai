@@ -10,6 +10,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 type Props = {
   id: string;
+  users: any;
 }
 
 function ChatRow({ id }: Props) {
