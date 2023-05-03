@@ -4,6 +4,7 @@ import Login from 'components/Login'
 import { getServerSession } from 'next-auth'
 import '../styles/globals.css'
 import { authOptions } from '../pages/api/auth/[...nextauth]'
+import ClientProvider from 'components/ClientProvider'
 
 export const metadata = {
   title: 'Jon\'s ChatGPT Messenger',
@@ -36,6 +37,8 @@ export default async function RootLayout({
               <SideBar />
             </div>
             {/* Client Provider - Notifications */}
+            <ClientProvider />
+
             <div className="bg-[#263238] flex-1">{children}</div>
           </div>
           )}
