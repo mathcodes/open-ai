@@ -39,6 +39,7 @@ function ChatInput({ chatId } : Props) {
       }
     }
 
+    //  1) right from my chatting but we are making a API call so basically we are adding to Firebase firstly from the client
     await addDoc(
       collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'),
       message
@@ -49,7 +50,9 @@ function ChatInput({ chatId } : Props) {
     // Toast Notificaiton loading
 
     //  Fetch Method to send message to backend
-    // creating an API endpoint
+    // creating an API en dpoint
+
+    // 2) The client then queries the API endpoint to get the response from the backend (our own API) - we are using the API endpoint that takes us to askQuestion
     await fetch('/api/askQuestion', {
       method: 'POST',
       headers: {
