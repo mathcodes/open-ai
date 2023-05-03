@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
-import { deleteDoc, doc, orderBy } from 'firebase/firestore';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChatBubbleLeftIcon, TrashIcon } from '@heroicons/react/24/outline';
+
+import { deleteDoc, doc, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 import { collection, query } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { usePathname, useRouter } from 'next/navigation';
 
 type Props = {
   id: string;
