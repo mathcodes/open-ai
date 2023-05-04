@@ -22,14 +22,16 @@ export default async function RootLayout({
           ) : (
             <div className="flex">
               {/* Sidebar */}
-              <div className="bg-[#202123] md:min-w-[20rem] max-w-xs overflow-y-auto h-screen">
-                <SideBar />
-              </div>
+              <div className="bg-gradient-to-r border-r border-[#fefecb]
+              from-[#000e2d] to-[#092059] md:min-w-[20rem] max-w-xs overflow-y-auto h-screen">
+  <SideBar />
+</div>
+
 
               <ClientProvider />
 
               {/* Content */}
-              <div className="bg-[#343541] flex-1">{children}</div>
+              <div className="bg-[#061b51] flex-1">{children}</div>
             </div>
           )}
         </SessionProvider>

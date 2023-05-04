@@ -104,7 +104,7 @@ function ChatInput({ chatId }: Props) {
         <button
           disabled={!prompt || !session}
           className="
-            bg-[#11A37F] hover:opacity-50 text-white font-bold py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed
+            bg-[#11A37F] hover:opacity-50 text-[#fefecb] font-bold py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed
         "
           type="submit"
         >
