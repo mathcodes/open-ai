@@ -27,7 +27,8 @@
     "react-hot-toast": "^2.4.1",
     "react-select": "^5.7.3",
     "swr": "^2.1.5",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "vercel": "^29.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
