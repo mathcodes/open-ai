@@ -1,33 +1,53 @@
-'use client'
+"use client";
 
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
-import { db } from "../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
-import toast from "react-hot-toast";
+import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
+import {
+  addDoc,
+  collection,
+  orderBy,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../firebase";
+import { toast } from "react-hot-toast";
+import useSWR from "swr";
+import ModelSelection from "./ModelSelection";
+import { useSession } from "next-auth/react";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 type Props = {
   chatId: string;
 };
 
-
-function ChatInput({ chatId } : Props) {
-  const [ prompt, setPrompt] = useState("");
+function ChatInput({ chatId }: Props) {
+  const [prompt, setPrompt] = useState("");
+  const { data: model } = useSWR("model", {
+    fallbackData: "text-davinci-003",
+  });
   const { data: session } = useSession();
 
-  // USE SWR to get model
-  const model = "text-davinci-003"
+  const [messages] = useCollection(
+    query(
+      collection(
+        db,
+        "users",
+        session?.user?.email!,
+        "chats",
+        chatId,
+        "messages"
+      ),
+      orderBy("createdAt", "asc")
+    )
+  );
 
-  const endMessage = async (e: FormEvent<HTMLFormElement>) => {
+  const generateResponse = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }
-  const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!prompt) return;
 
     const input = prompt.trim();
     setPrompt("");
+
+    if (!prompt) return;
 
     const message: Message = {
       text: input,
@@ -35,64 +55,68 @@ function ChatInput({ chatId } : Props) {
       user: {
         _id: session?.user?.email!,
         name: session?.user?.name!,
-        avatar: session?.user?.image! || `https://ui-avatars.com/api/?name=${session?.user?.name!}`,
-      }
-    }
-
-    //  1) right from my chatting but we are making a API call so basically we are adding to Firebase firstly from the client
-    await addDoc(
-      collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'),
-      message
-    )
-
-    const notification = toast.loading('Thinking here....')
-
-    // Toast Notificaiton loading
-
-    //  Fetch Method to send message to backend
-    // creating an API en dpoint
-
-    // 2) The client then queries the API endpoint to get the response from the backend (our own API) - we are using the API endpoint that takes us to askQuestion
-    await fetch('/api/askQuestion', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
+        avatar:
+          session?.user?.image ||
+          `https://ui-avatars.com/api/?name=${session?.user?.name}`,
       },
-      body: JSON.stringify({
-        prompt: input, chatId, model, session
-      })
-    }).then(() => {
-      // toast notificaiton successfull
-      toast.success('Message Sent', {
-        id: notification,
-      })
-    })
+    };
 
-  }
+    await addDoc(
+      collection(
+        db,
+        "users",
+        session?.user?.email!,
+        "chats",
+        chatId,
+        "messages"
+      ),
+      message
+    );
+
+    const notification = toast.loading("ChatGPT is thinking...");
+
+    await fetch("/api/askQuestion", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt: input, chatId, model, session }),
+    }).then((res) => {
+      toast.success("ChatGPT has responded!", {
+        id: notification,
+      });
+    });
+  };
+
   return (
-    <div className="bg-gray-700/50 text-gray-400 rounded-lg text-sm">
-      <form
-        onSubmit={e => sendMessage(e)}
-      className="p-5 space-x-5 flex">
+    <div className="bg-gray-700/50 text-gray-400 rounded-lg text-sm focus:outline-none">
+      <form onSubmit={generateResponse} className="p-5 space-x-5 flex">
         <input
-          className="bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300"
-          disabled={!session}
+          className="bg-transparent focus:outline-none flex-1
+            disabled:cursor-not-allowed disabled:text-gray-300
+          "
           value={prompt}
+          placeholder="Type your message here..."
           onChange={(e) => setPrompt(e.target.value)}
-          type="text"
-          placeholder="Type here..."
+          disabled={!session}
         />
 
         <button
           disabled={!prompt || !session}
+          className="
+            bg-[#11A37F] hover:opacity-50 text-white font-bold py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed
+        "
           type="submit"
-          className="bg-[#11A37F] hover:opacity-50 text-white font-bold px-4 py-2 rounded disable:bg-gray-300 disabled:cursor-not-allowed"
         >
-          <PaperAirplaneIcon className="h-5 w-5 -rotate-45" />
+          <PaperAirplaneIcon className="h-4 w-4 -rotate-45" />
         </button>
       </form>
+
+      <div className="md:hidden">
+        <ModelSelection />
+      </div>
     </div>
-  )
+  );
 }
 
-export default ChatInput
+export default ChatInput;
